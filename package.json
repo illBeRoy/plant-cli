@@ -1,0 +1,32 @@
+{
+  "name": "plant-cli",
+  "version": "1.0.0",
+  "description": "cli for quick, opinionated creation of nodejs and react projects",
+  "main": "dist/src/index.js",
+  "bin": {
+    "plant": "./dist/src/index.ts"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/illberoy/plant-cli.git"
+  },
+  "author": "Roy Sommer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/illberoy/plant-cli/issues"
+  },
+  "homepage": "https://github.com/illberoy/plant-cli#readme",
+  "devDependencies": {
+    "@types/node": "^10.5.2",
+    "@types/ora": "^1.3.4",
+    "typescript": "^2.9.2"
+  },
+  "dependencies": {
+    "ora": "^2.1.0"
+  }
+}
