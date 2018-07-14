@@ -1,11 +1,16 @@
-import * as ora from 'ora';
+import { ArgumentParser } from 'argparse';
+import { defaultRecipe, listRecipes, loadRecipe, runRecipe } from './recipe';
 
-const main = async () => {
-  const log = ora('Getting shit together...').start();
-  await new Promise(res => setTimeout(res, 1000));
-  log.text = 'Almost there...';
-  await new Promise(res => setTimeout(res, 1000));
-  log.stopAndPersist({ symbol: '🐵', text: 'Done!' });
-};
+if (require.main === module) {
+  const argparser = new ArgumentParser();
+  argparser.addArgument('recipe', {
+    help: 'name of the recipe to create the project from',
+    choices: listRecipes(),
+    defaultValue: defaultRecipe(),
+    type: 'string',
+    nargs: '?'
+  });
 
-main();
+  const args = argparser.parseArgs();
+  runRecipe(loadRecipe(args.recipe));
+}

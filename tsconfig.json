@@ -10,7 +10,11 @@
     "allowSyntheticDefaultImports": false
   },
   "files": [
-    "./src/index.ts"
+    "./src/index.ts",
+    "./src/readme.ts"
+  ],
+  "include": [
+    "./src/recipes/*.ts"
   ],
   "exclude": [
     "node_modules",
