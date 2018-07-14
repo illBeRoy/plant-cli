@@ -24,6 +24,11 @@ export const ls = (dir = '.'): Promise<string[]> => {
     fs.readdir(dir, (err, files) => err ? rej(err) : res(files)));
 };
 
+export const mv = (oldFilename: string, newFilename: string): Promise<void> => {
+  return new Promise((res, rej) =>
+    fs.rename(oldFilename, newFilename, err => err ? rej(err) : res()));
+};
+
 export const isDirEmpty = async (dir = '.'): Promise<boolean> => {
   return (await ls(dir)).length === 0;
 };
