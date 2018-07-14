@@ -2,8 +2,8 @@ import { logger } from '../utils/logger';
 import { npmInstall, npmInstallDev } from '../actions/npm';
 import { writeFile } from '../utils/fs';
 
-const expressEntryPointTemplate = `
-import * as express from 'express';
+const expressEntryPointTemplate =
+`import * as express from 'express';
 
 const app = express()
   .use(express.json());
