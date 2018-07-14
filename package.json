@@ -4,12 +4,12 @@
   "description": "cli for quick, opinionated creation of typescript projects",
   "main": "dist/src/index.js",
   "bin": {
-    "plant": "./dist/src/index.ts"
+    "plant": "./dist/src/index.js"
   },
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "prepublish": "npm run make:readme",
+    "prepublish": "npm run build && npm run make:readme",
     "precommit": "npm run make:readme && git add README.md",
     "publish:minor": "npm version minor && npm publish",
     "make:readme": "npm run build && node dist/src/readme"
