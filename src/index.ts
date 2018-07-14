@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { ArgumentParser } from 'argparse';
 import { defaultRecipe, listRecipes, loadRecipe, runRecipe } from './recipe';
 
