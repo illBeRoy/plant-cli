@@ -2,7 +2,8 @@ import { logger } from '../utils/logger';
 import { createReactApp } from '../actions/create-react-app';
 import { npmInstallDev } from '../actions/npm';
 import { addScript } from '../actions/packageJson';
-import { mv, writeFile } from '../utils/fs';
+import { appendToFile, mv, writeFile } from '../utils/fs';
+import { moduleDeclaration, replaceImport } from '../actions/typescript';
 
 const configOverridesTemplate =
   `var rewireSass = require('react-app-rewire-scss');
@@ -24,8 +25,14 @@ export const createProjectWithReact = async () => {
   await npmInstallDev('node-sass');
   await npmInstallDev('sass-loader');
   logger.pending('renaming files');
-  await mv('src/app.css', 'src/app.scss');
+  await mv('src/App.css', 'src/App.scss');
   await mv('src/index.css', 'src/index.scss');
+  logger.pending('replacing imports');
+  await replaceImport('src/App.tsx', './App.css', './App.scss');
+  await replaceImport('src/index.tsx', './index.css', './index.scss');
+  logger.pending('adding declarations');
+  await mv('images.d.ts', 'src/external-types.d.ts');
+  await appendToFile('src/external-types.d.ts', moduleDeclaration('*.scss'));
   logger.success();
 
   logger.context('React App Rewired');

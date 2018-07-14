@@ -10,6 +10,11 @@ export const readFile = (filename: string): Promise<string> => {
     fs.readFile(filename, { encoding: 'utf-8' }, (err, data) => err ? rej(err) : res(data)));
 };
 
+export const appendToFile = (filename: string, content: string): Promise<void> => {
+  return new Promise((res, rej) =>
+    fs.appendFile(filename, content, { encoding: 'utf-8' }, err => err ? rej(err) : res()));
+};
+
 export const touch = (filename: string): Promise<void> => {
   return writeFile(filename, '');
 };

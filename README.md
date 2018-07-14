@@ -32,7 +32,7 @@ The following recipes are built in and ready to use out of the box:
 
 - **express**: Express-only application which utilizes json as body parser
 
-- **react**: React application with typescript, jest, sass and axios
+- **react**: React application with typescript, jest and sass modules
 
 
 ## Extending `plant`

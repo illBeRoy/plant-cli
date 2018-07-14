@@ -1,5 +1,6 @@
-import { writeFile } from '../utils/fs';
+import { readFile, writeFile } from '../utils/fs';
 import { toJson } from '../utils/json';
+import { guardPromise } from '../utils/promise';
 
 const defaultTSConfig = {
   compilerOptions: {
@@ -23,4 +24,17 @@ const defaultTSConfig = {
 
 export const createTSConfig = async (tsConfig = defaultTSConfig) => {
   await writeFile('tsconfig.json', toJson(tsConfig));
+};
+
+export const moduleDeclaration = (moduleName: string) => {
+  return `declare module '${moduleName}';`;
+};
+
+export const replaceImport = async (filename: string, from: string, to: string) => {
+  const tsFile = await readFile(filename);
+  const output = tsFile
+    .split('\n')
+    .map(line => line.startsWith('import') ? line.replace(`'${from}';`, `'${to}'`) : line)
+    .join('\n');
+  await writeFile(filename, output);
 };
