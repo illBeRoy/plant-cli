@@ -9,7 +9,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "prepublish": "npm run build && npm run make:readme",
+    "prepublish": "npm run build && node dist/src/publish && npm run make:readme",
     "precommit": "npm run make:readme && git add README.md",
     "publish:minor": "npm version minor && npm publish",
     "make:readme": "npm run build && node dist/src/readme"
