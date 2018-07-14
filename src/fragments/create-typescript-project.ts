@@ -42,7 +42,9 @@ export const createTypescriptProject = async () => {
   await createTSConfig();
   logger.pending('adding scripts');
   await addScript('build:typescript', 'tsc');
+  await addScript('build', 'npm build:typescript');
   await addScript('watch:typescript', 'tsc -w');
+  await addScript('watch', 'npm watch:typescript');
   logger.success();
 
   logger.context('Jest');
