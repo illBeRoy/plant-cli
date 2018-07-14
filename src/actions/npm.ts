@@ -11,3 +11,7 @@ export const npmInstall = async (packageName: string) => {
 export const npmInstallDev = async (packageName: string) => {
   await shell(`npm install --save-dev '${packageName}'`)
 };
+
+export const npmShowVersion = async (packageName: string): Promise<string> => {
+  return await shell(`npm show '${packageName}' version`);
+};

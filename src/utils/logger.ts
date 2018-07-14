@@ -19,7 +19,7 @@ class Logger {
   }
 
   info(text: string) {
-    this.logger.info().text = this.formatText(text);
+    this.logger.info(this.formatText(text));
     return this;
   }
 
