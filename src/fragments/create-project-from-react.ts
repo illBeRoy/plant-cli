@@ -13,7 +13,7 @@ function rewireCssModules(config, env) {
   const cssRules = getLoader(config.module.rules, rule => String(rule.test) === String(/\\.css$/));
   const cssLoaderConfig = (cssRules.use || cssRules.loader || []).find(x => x.loader === require.resolve('css-loader'))
   if (cssLoaderConfig) {
-  	cssLoaderConfig.options = { ...(cssLoaderConfig.options || {}), modules: true, camelCase: true};
+  	cssLoaderConfig.options = Object.assign({}, (cssLoaderConfig.options || {}), {modules: true, camelCase: true});
   }
   return config;
 }
