@@ -3,3 +3,4 @@ assets
 *.png
 tsconfig.json
 .3rdparty
+.idea
