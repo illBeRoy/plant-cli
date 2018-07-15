@@ -2,3 +2,4 @@ src
 assets
 *.png
 tsconfig.json
+.3rdparty
