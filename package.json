@@ -1,6 +1,6 @@
 {
   "name": "plant-cli",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "cli for quick, opinionated creation of typescript projects",
   "main": "dist/src/index.js",
   "bin": {
