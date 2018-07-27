@@ -10,7 +10,7 @@ differ from mine (such as create-react-app) which I then have to hack upon.
 That's where `plant` comes into play - this is a tool that's like a macro runner more than anything else: it has a very
 clear and extensible DSL that handles everything from basic i/o operations to domain-specific actions, such as `npm install`.
 
-This `plant` is mine, but you can make it yours, by forking, altering and adding different macros and recipes.
+Feel free to contribute by either PRing, forking, altering and adding different macros and recipes.
 
 ## Install
 Install globally using npm:
