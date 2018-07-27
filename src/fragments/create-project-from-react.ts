@@ -2,10 +2,10 @@ import { logger } from '../utils/logger';
 import { createReactApp } from '../actions/create-react-app';
 import { npmInstallDev } from '../actions/npm';
 import { addScript } from '../actions/packageJson';
-import { appendToFile, mv, writeFile } from '../utils/fs';
+import { appendToFile, mkdir, mkdirP, mv, parentDirOf, tmp, writeFile } from '../utils/fs';
 import { moduleDeclaration, replaceImport } from '../actions/typescript';
 
-const configOverridesTemplate =
+const configOverridesTemplate = (entrypoint: string) =>
   `const rewireSass = require('react-app-rewire-scss');
 const { getLoader } = require('react-app-rewired');
 
@@ -18,9 +18,18 @@ function rewireCssModules(config, env) {
   return config;
 }
 
+function rewireEntryPoint(config, env) {
+  const oldEntryPoint = require.cache[require.resolve(\`react-scripts-ts/config/paths.js\`)].exports.appIndexJs;
+  const newEntryPoint = require.resolve('./${entrypoint}/index.tsx');
+  require.cache[require.resolve(\`react-scripts-ts/config/paths.js\`)].exports.appIndexJs = newEntryPoint;
+  config.entry = config.entry.map(entry => entry === oldEntryPoint ? newEntryPoint : entry);
+  return config;
+}
+
 module.exports = function override(config, env) {
   config = rewireCssModules(config, env);
   config = rewireSass(config, env);
+  config = rewireEntryPoint(config, env);
   return config;
 }
 `;
@@ -48,7 +57,14 @@ class App extends React.Component {
 export default App;
 `;
 
-export const createProjectWithReact = async () => {
+export const addReactScriptsToPackageJson = async (postfix = '') => {
+  postfix = postfix ? `:${postfix}` : postfix;
+  await addScript(`start${postfix}`, 'react-app-rewired start --scripts-version react-scripts-ts');
+  await addScript(`build${postfix}`, 'react-app-rewired build --scripts-version react-scripts-ts');
+  await addScript(`test${postfix}`, 'react-app-rewired test --scripts-version react-scripts-ts --env=jsdom');
+}
+
+export const createProjectWithReact = async (entrypoint = 'src') => {
   logger.context('Create React App');
   logger.pending('initializing project (this might take a little while)');
   await createReactApp('. --use-npm --scripts-version=react-scripts-ts');
@@ -74,10 +90,17 @@ export const createProjectWithReact = async () => {
   await npmInstallDev('react-app-rewired');
   await npmInstallDev('react-app-rewire-scss');
   logger.pending('rewiring npm scripts');
-  await addScript('start', 'react-app-rewired start --scripts-version react-scripts-ts');
-  await addScript('build', 'react-app-rewired build --scripts-version react-scripts-ts');
-  await addScript('test', 'react-app-rewired test --scripts-version react-scripts-ts --env=jsdom');
+
   logger.pending('creating config overrides');
-  await writeFile('config-overrides.js', configOverridesTemplate);
+  await writeFile('config-overrides.js', configOverridesTemplate(entrypoint));
+
+  if (entrypoint !== 'src') {
+    logger.pending('moving files to new root');
+    const tmpDir = tmp();
+    await mv(`src`, tmpDir);
+    await mkdirP(parentDirOf(entrypoint));
+    await mv(tmpDir, entrypoint);
+  }
+
   logger.success();
 };

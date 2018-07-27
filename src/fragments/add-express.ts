@@ -1,8 +1,9 @@
 import { logger } from '../utils/logger';
 import { npmInstall, npmInstallDev } from '../actions/npm';
-import { writeFile } from '../utils/fs';
+import { mkdirP, writeFile } from '../utils/fs';
+import { addScript } from '../actions/packageJson';
 
-const expressEntryPointTemplate =
+export const expressEntryPointTemplate =
 `import * as express from 'express';
 
 const app = express()
@@ -13,14 +14,35 @@ if (require.main === module) {
 }
 `;
 
-export const addExpress = async () => {
+export const expressReactEntryPointTemplate =
+  `import * as express from 'express';
+
+const app = express()
+  .use(express.json())
+  .use(express.static(__dirname + '/../../../build'))
+  .get('/api/health', (req, res) => res.send({status: 'alive'}));
+
+if (require.main === module) {
+  app.listen(3001, () => console.log('Server is up'));
+}
+`;
+
+export const addExpressScriptsToPackageJson = async (postfix = '', entry = 'dist/src/index.js') => {
+  postfix = postfix ? `:${postfix}` : '';
+  await addScript(`build${postfix}`, 'tsc');
+  await addScript(`start${postfix}`, `tsc-watch --onSuccess "node ${entry}"`);
+};
+
+export const addExpress = async (template, entrypoint: string = 'src') => {
   logger.context('Express');
   logger.pending('installing dependencies');
   await npmInstall('express');
   await npmInstallDev('@types/express');
+  await npmInstallDev('tsc-watch');
 
   logger.pending('creating entry file');
-  await writeFile('src/index.ts', expressEntryPointTemplate);
+  await mkdirP(entrypoint);
+  await writeFile(`${entrypoint}/index.ts`, template);
 
   logger.success();
 };

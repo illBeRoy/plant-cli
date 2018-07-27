@@ -1,10 +1,11 @@
+import { mkdirP } from './fs';
 import { shell } from './shell';
 
 export const getThirdPartyToolsDirectory = () =>
   `${__dirname}/../../../.3rdparty`;
 
 export const installThirdPartyTool = async (toolName: string) => {
-  await shell(`mkdir -p ${getThirdPartyToolsDirectory()}`);
+  await mkdirP(getThirdPartyToolsDirectory());
   await shell(`npm --prefix '${getThirdPartyToolsDirectory()}' install '${toolName}'`);
 };
 

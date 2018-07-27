@@ -1,4 +1,4 @@
-import { createProjectWithReact } from '../fragments/create-project-from-react';
+import { addReactScriptsToPackageJson, createProjectWithReact } from '../fragments/create-project-from-react';
 import { createGitRepo } from '../fragments/create-git-repo';
 import { ensureCWDEmpty } from '../fragments/ensure-cwd-empty';
 
@@ -8,5 +8,6 @@ export const description = () =>
 export const recipe = async () => {
   await ensureCWDEmpty();
   await createProjectWithReact();
+  await addReactScriptsToPackageJson();
   await createGitRepo();
 };

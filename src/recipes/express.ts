@@ -1,5 +1,5 @@
 import { createEmptyProject } from '../fragments/create-empty-project';
-import { addExpress } from '../fragments/add-express';
+import { addExpress, addExpressScriptsToPackageJson, expressEntryPointTemplate } from '../fragments/add-express';
 import { addTypescript } from '../fragments/add-typescript';
 import { addJest } from '../fragments/add-jest';
 import { createGitRepo } from '../fragments/create-git-repo';
@@ -14,5 +14,6 @@ export const recipe = async () => {
   await createGitRepo();
   await addTypescript();
   await addJest();
-  await addExpress();
+  await addExpress(expressEntryPointTemplate);
+  await addExpressScriptsToPackageJson();
 };

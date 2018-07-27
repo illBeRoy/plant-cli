@@ -32,6 +32,8 @@ The following recipes are built in and ready to use out of the box:
 
 - **express**: Express-only application which utilizes json as body parser
 
+- **react-express**: Fullstack React & Express application with typescript, jest and sass modules
+
 - **react**: React application with typescript, jest and sass modules
 
 

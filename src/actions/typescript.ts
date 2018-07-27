@@ -1,5 +1,5 @@
 import { readFile, writeFile } from '../utils/fs';
-import { toJson } from '../utils/json';
+import { fromJson, toJson } from '../utils/json';
 import { guardPromise } from '../utils/promise';
 
 const defaultTSConfig = {
@@ -24,6 +24,32 @@ const defaultTSConfig = {
 
 export const createTSConfig = async (tsConfig = defaultTSConfig) => {
   await writeFile('tsconfig.json', toJson(tsConfig));
+};
+
+export const setCompilerOption = async (key: string, value: any) => {
+  const tsconfig = fromJson(await readFile('tsconfig.json'));
+  await writeFile(
+    'tsconfig.json',
+    toJson({
+      ...tsconfig,
+      compilerOptions: {
+        ...(tsconfig.compilerOptions || {}),
+        [key]: value
+      }
+    }));
+};
+
+export const addExcludedFileToTSConfig = async (dirname: string) => {
+  const tsconfig = fromJson(await readFile('tsconfig.json'));
+  await writeFile(
+    'tsconfig.json',
+    toJson({
+      ...tsconfig,
+      exclude: [
+        ...(tsconfig.exclude || []),
+        dirname
+      ]
+    }));
 };
 
 export const moduleDeclaration = (moduleName: string) => {
