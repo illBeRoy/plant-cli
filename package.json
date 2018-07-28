@@ -1,7 +1,15 @@
 {
   "name": "plant-cli",
-  "version": "1.12.0",
-  "keywords": ["cli-app", "generator", "react", "frontend", "express", "tool", "boilerplate"],
+  "version": "1.13.0",
+  "keywords": [
+    "cli-app",
+    "generator",
+    "react",
+    "frontend",
+    "express",
+    "tool",
+    "boilerplate"
+  ],
   "description": "cli for quick, opinionated creation of typescript projects",
   "main": "dist/src/index.js",
   "bin": {
