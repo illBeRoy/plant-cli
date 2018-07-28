@@ -3,6 +3,7 @@ import { addExpressScriptsToPackageJson } from './add-express';
 import { addScript, setPackageJsonValue } from '../actions/packageJson';
 import { logger } from '../utils/logger';
 import { addReactScriptsToPackageJson } from './create-project-from-react';
+import { setTSlintRule } from '../actions/tslint';
 
 export const configureFullstackProject = async () => {
   logger.context('Fullstack');
@@ -16,9 +17,12 @@ export const configureFullstackProject = async () => {
   await setCompilerOption('rootDir', '.');
   await addExcludedFileToTSConfig('dist');
   await addExcludedFileToTSConfig('config-overrides.js');
+  logger.pending('updating tslint.json');
+  await setTSlintRule('ordered-imports', false);
+  await setTSlintRule('member-access', false);
   logger.pending('updating package.json');
   await setPackageJsonValue('main', 'dist/src/server/index.js');
-  await setPackageJsonValue('proxy', 'http://localhost:3001');
+  await setPackageJsonValue('proxy', { '.*': { target: 'http://localhost:3001' } });
   await addReactScriptsToPackageJson('client');
   await addExpressScriptsToPackageJson('server', 'dist/src/server/index.js');
   await addScript('start', 'npm run start:client & npm run start:server');

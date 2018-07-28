@@ -23,7 +23,7 @@ const app = express()
   .get('/api/health', (req, res) => res.send({status: 'alive'}));
 
 if (require.main === module) {
-  app.listen(3001, () => console.log('Server is up'));
+  app.listen(3001);
 }
 `;
 
