@@ -2,11 +2,23 @@ import { addExcludedFileToTSConfig, setCompilerOption } from '../actions/typescr
 import { addExpressScriptsToPackageJson } from './add-express';
 import { addScript, setPackageJsonValue } from '../actions/packageJson';
 import { logger } from '../utils/logger';
-import { addReactScriptsToPackageJson } from './create-project-from-react';
+import { addReactScriptsToPackageJson, reactScriptsTest } from './create-project-from-react';
 import { setTSlintRule } from '../actions/tslint';
+import { mkdir, writeFile } from '../utils/fs';
+
+export const e2eTestTemplate =
+  `describe('End to End Tests', () => {
+  it('should pass', () => {
+    expect(true).toBeTruthy();
+  });
+});
+`;
 
 export const configureFullstackProject = async () => {
   logger.context('Fullstack');
+  logger.pending('adding e2e files');
+  await mkdir('test');
+  await writeFile('test/app.e2e.ts', e2eTestTemplate);
   logger.pending('updating tsconfig.json');
   await setCompilerOption('module', 'commonjs');
   await setCompilerOption('allowJs', false);
@@ -23,10 +35,12 @@ export const configureFullstackProject = async () => {
   logger.pending('updating package.json');
   await setPackageJsonValue('main', 'dist/src/server/index.js');
   await setPackageJsonValue('proxy', { '.*': { target: 'http://localhost:3001' } });
-  await addReactScriptsToPackageJson('client');
-  await addExpressScriptsToPackageJson('server', 'dist/src/server/index.js');
+  await addReactScriptsToPackageJson('client', 'src/client');
+  await addExpressScriptsToPackageJson('server', 'src/server');
+  await addScript('test:server', reactScriptsTest('src/server', '--env=node'));
+  await addScript('test:e2e', reactScriptsTest('test', '--testMatch **/test/**/*.e2e.ts', false));
+  await addScript('test', 'export CI=true && npm run test:client && npm run test:server');
   await addScript('start', 'npm run start:client & npm run start:server');
   await addScript('build', 'npm run build:server & npm run build:client');
-  await addScript('test', 'npm run test:client');
   logger.success();
 };

@@ -57,12 +57,15 @@ class App extends React.Component {
 export default App;
 `;
 
-export const addReactScriptsToPackageJson = async (postfix = '') => {
+export const reactScriptsTest = (entry: string, args = '--env=jsdom', useWatchMode = true) =>
+  `${!useWatchMode ? 'export CI=true && ' : ''}react-app-rewired test --scripts-version react-scripts-ts ${args} ${entry}`;
+
+export const addReactScriptsToPackageJson = async (postfix = '', entry = 'src') => {
   postfix = postfix ? `:${postfix}` : postfix;
-  await addScript(`start${postfix}`, 'react-app-rewired start --scripts-version react-scripts-ts');
-  await addScript(`build${postfix}`, 'react-app-rewired build --scripts-version react-scripts-ts');
-  await addScript(`test${postfix}`, 'react-app-rewired test --scripts-version react-scripts-ts --env=jsdom');
-}
+  await addScript(`start${postfix}`, `react-app-rewired start --scripts-version react-scripts-ts`);
+  await addScript(`build${postfix}`, `react-app-rewired build --scripts-version react-scripts-ts`);
+  await addScript(`test${postfix}`, reactScriptsTest(entry));
+};
 
 export const createProjectWithReact = async (entrypoint = 'src') => {
   logger.context('Create React App');

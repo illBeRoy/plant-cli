@@ -6,7 +6,7 @@ import { addScript } from '../actions/packageJson';
 export const expressEntryPointTemplate =
 `import * as express from 'express';
 
-const app = express()
+export const app = express()
   .use(express.json());
 
 if (require.main === module) {
@@ -17,7 +17,7 @@ if (require.main === module) {
 export const expressReactEntryPointTemplate =
   `import * as express from 'express';
 
-const app = express()
+export const app = express()
   .use(express.json())
   .use(express.static(__dirname + '/../../../build'))
   .get('/api/health', (req, res) => res.send({status: 'alive'}));
@@ -27,10 +27,10 @@ if (require.main === module) {
 }
 `;
 
-export const addExpressScriptsToPackageJson = async (postfix = '', entry = 'dist/src/index.js') => {
+export const addExpressScriptsToPackageJson = async (postfix = '', entry = 'src') => {
   postfix = postfix ? `:${postfix}` : '';
   await addScript(`build${postfix}`, 'tsc');
-  await addScript(`start${postfix}`, `tsc-watch --onSuccess "node ${entry}"`);
+  await addScript(`start${postfix}`, `tsc-watch --onSuccess "node dist/${entry}/index.js"`);
 };
 
 export const addExpress = async (template, entrypoint: string = 'src') => {

@@ -14,6 +14,6 @@ export const createEmptyProject = async () => {
   await npmInit();
   logger.pending('creating config');
   await setPackageJsonValue('main', 'dist/src/index.js');
-  addScript('start', 'node .');
+  await addScript('start', 'node .');
   logger.success();
 };

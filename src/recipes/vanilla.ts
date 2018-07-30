@@ -1,3 +1,4 @@
+import { jestConfigForNode } from '../actions/jest';
 import { createEmptyProject } from '../fragments/create-empty-project';
 import { addTypescript } from '../fragments/add-typescript';
 import { addJest } from '../fragments/add-jest';
@@ -12,5 +13,5 @@ export const recipe = async () => {
   await createEmptyProject();
   await createGitRepo();
   await addTypescript();
-  await addJest();
+  await addJest(jestConfigForNode);
 };
