@@ -36,8 +36,6 @@ The following recipes are built in and ready to use out of the box:
 
 - **react-express**: Fullstack React & Express application with typescript, jest and sass modules
 
-- **react.-component**: React application with typescript, jest and sass modules
-
 - **react**: React application with typescript, jest and sass modules
 
 
