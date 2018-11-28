@@ -1,6 +1,5 @@
 import { readFile, writeFile } from '../utils/fs';
 import { fromJson, toJson } from '../utils/json';
-import { guardPromise } from '../utils/promise';
 
 const defaultTSConfig = {
   compilerOptions: {
@@ -11,10 +10,9 @@ const defaultTSConfig = {
     outDir: './dist',
     rootDir: './',
     moduleResolution: 'node',
-    allowSyntheticDefaultImports: false
   },
-  files: [
-    './src/index.ts'
+  include: [
+    'src'
   ],
   exclude: [
     'node_modules',

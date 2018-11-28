@@ -9,13 +9,8 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": false
   },
-  "files": [
-    "./src/index.ts",
-    "./src/readme.ts",
-    "./src/publish.ts"
-  ],
   "include": [
-    "./src/recipes/*.ts"
+    "src"
   ],
   "exclude": [
     "node_modules",

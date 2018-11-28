@@ -3,7 +3,7 @@ import { addExpressScriptsToPackageJson } from './add-express';
 import { addScript, setPackageJsonValue } from '../actions/packageJson';
 import { logger } from '../utils/logger';
 import { addReactScriptsToPackageJson, reactScriptsTest } from './create-project-from-react';
-import { setTSlintRule } from '../actions/tslint';
+import { addTSlintRule } from '../actions/tslint';
 import { mkdir, writeFile } from '../utils/fs';
 
 export const e2eTestTemplate =
@@ -30,8 +30,8 @@ export const configureFullstackProject = async () => {
   await addExcludedFileToTSConfig('dist');
   await addExcludedFileToTSConfig('config-overrides.js');
   logger.pending('updating tslint.json');
-  await setTSlintRule('ordered-imports', false);
-  await setTSlintRule('member-access', false);
+  await addTSlintRule('ordered-imports', false);
+  await addTSlintRule('member-access', false);
   logger.pending('updating package.json');
   await setPackageJsonValue('main', 'dist/src/server/index.js');
   await setPackageJsonValue('proxy', { '.*': { target: 'http://localhost:3001' } });
