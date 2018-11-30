@@ -13,8 +13,13 @@ export const addTSLint = async () => {
   await setTSLintExtends('tslint:recommended');
   await setTSLintRulesDirectory('node_modules/tslint-eslint-rules/dist/rules');
   await addTSlintRule('object-curly-spacing', true);
-  await addTSlintRule('quotemark', [true, "single"]);
+  await addTSlintRule('quotemark', [true, 'single']);
   await addTSlintRule('ordered-imports', false);
+  await addTSlintRule('max-line-length', false);
+  await addTSlintRule('arrow-parens', false);
+  await addTSlintRule('trailing-comma', false);
+  await addTSlintRule('no-shadowed-variable', false);
+  await addTSlintRule('object-literal-sort-keys', false);
   logger.pending('adding scripts');
   await addScript('lint', 'tslint --project tsconfig.json');
   await addScript('posttest', 'npm run lint');
