@@ -29,28 +29,22 @@ optional parameter, and if omitted, defaults to `vanilla` - which is the most ba
 The following recipes are built in and ready to use out of the box:
 
 - **vanilla**: Basic zero-conf typescript project, which initializes a git repo and uses jest for testing
-
-  <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">Typescript</span> <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">Jest</span> <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">TSLint</span>
+> Typescript, Jest, TSLint
 
 - **express**: Express-only application which utilizes json as body parser
-
-  <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">Express</span> <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">Typescript</span> <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">Jest</span>
+> Express, Typescript, Jest
 
 - **react-component**: React component library that is not a standalone project
-
-  <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">React</span> <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">Jest</span> <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">Storybook</span> <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">Typescript</span>
+> React, Jest, Storybook, Typescript
 
 - **react-express**: Fullstack React & Express application with typescript, jest and sass modules
-
-  <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">React</span> <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">Create-React-App</span> <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">SASS</span> <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">Express</span> <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">TSLint</span>
+> React, Create-React-App, SASS, Express, TSLint
 
 - **react-parcel**: React application with typescript, jest and sass modules, powered by the parcel bundler (experimental)
-
-  <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">Typescript</span> <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">Jest</span> <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">TSLint</span> <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">React</span> <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">Parcel</span> <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">SASS</span>
+> Typescript, Jest, TSLint, React, Parcel, SASS
 
 - **react**: React application with typescript, jest and sass modules
-
-  <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">React</span> <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">Create-React-App</span> <span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">SASS</span>
+> React, Create-React-App, SASS
 
 
 ## Extending `plant`
