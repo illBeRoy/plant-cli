@@ -45,16 +45,25 @@ The following recipes are built in and ready to use out of the box:
 - `fragments`: composition of actions that serve a specific purpose (e.g add express to project)
 - `recipes`: composition of fragments which produce a working boilerplate project
 
+### Adding utils and actions
 Adding a util, an action or a fragment is straight forward - just look at the existing code and add your own in the same flavour.
 
-Recipes, on the other hand, have some "magic" regarding their implementation:
+### Adding Fragments
+Fragments work very much like utils and actions, with a small addition: a fragment can export a `tags` variable, which holds an array of string tags representing the components of this fragment. For example, the `add-react-with-parcel` fragment exports `react`, `parcel` and `sass`, as those three components are added by this fragment.
 
+Fragment tags are then collected and displayed in the README, under the recipes which use said fragments.
+
+### Adding recipes
 `plant` recognizes everything in the `recipes` directory as a recipe, its name being its filename. As it addresses recipes
 by name, recipe files should maintain the `RecipeType` interface (found in `recipe.ts`) where they export two functions:
 
 1. `recipe(): Promise<void>` - the recipe routine that is called by the recipes runner and either resolves or aborts using the `terminate()` util.
 
 2. `description(): string` - a description of the recipe, used to compose this README file.
+
+### Adding Fragments
+
+Adding a util, an action or a fragment is straight forward - just look at the existing code and add your own in the same flavour.
 
 Refer to one of the existing recipes for examples.
 
