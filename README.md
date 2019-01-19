@@ -29,22 +29,22 @@ optional parameter, and if omitted, defaults to `vanilla` - which is the most ba
 The following recipes are built in and ready to use out of the box:
 
 - **vanilla**: Basic zero-conf typescript project, which initializes a git repo and uses jest for testing
-> Typescript, Jest, TSLint
+  ###### Typescript, Jest, TSLint
 
 - **express**: Express-only application which utilizes json as body parser
-> Express, Typescript, Jest
+  ###### Express, Typescript, Jest
 
 - **react-component**: React component library that is not a standalone project
-> React, Jest, Storybook, Typescript
+  ###### React, Jest, Storybook, Typescript
 
 - **react-express**: Fullstack React & Express application with typescript, jest and sass modules
-> React, Create-React-App, SASS, Express, TSLint
+  ###### React, Create-React-App, SASS, Express, TSLint
 
 - **react-parcel**: React application with typescript, jest and sass modules, powered by the parcel bundler (experimental)
-> Typescript, Jest, TSLint, React, Parcel, SASS
+  ###### Typescript, Jest, TSLint, React, Parcel, SASS
 
 - **react**: React application with typescript, jest and sass modules
-> React, Create-React-App, SASS
+  ###### React, Create-React-App, SASS
 
 
 ## Extending `plant`
