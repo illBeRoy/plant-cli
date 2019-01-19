@@ -9,15 +9,20 @@ interface RecipeType {
   description(): string;
 }
 
+export const recipesDirectory = () => `${__dirname}/recipes`;
+
 export const defaultRecipe = () => 'vanilla';
 
 export const listRecipes = (): string[] =>
-  readdirSync(`${__dirname}/recipes`)
+  readdirSync(recipesDirectory())
     .filter(filename => filename.endsWith('.js'))
     .map(filename => filename.substr(0, filename.length - '.js'.length));
 
 export const loadRecipe = (recipeName: string): RecipeType =>
-  require(`${__dirname}/recipes/${recipeName}`);
+  require(getRecipeFilename(recipeName));
+
+export const getRecipeFilename = (recipeName: string): string =>
+  `${recipesDirectory()}/${recipeName}.js`;
 
 export const runRecipe = async (recipe: RecipeType) => {
   try {

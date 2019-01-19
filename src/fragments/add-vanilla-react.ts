@@ -1,4 +1,4 @@
-import { addToNPMIgnore, npmInstall, npmInstallDev } from '../actions/npm';
+import { npmInstallDev } from '../actions/npm';
 import { addPeerDependency } from '../actions/packageJson';
 import { logger } from '../utils/logger';
 
@@ -10,3 +10,5 @@ export const addVanillaReact = async () => {
   await npmInstallDev('@types/react');
   logger.success();
 };
+
+export const tags = ['React'];

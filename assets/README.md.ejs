@@ -29,8 +29,12 @@ optional parameter, and if omitted, defaults to `vanilla` - which is the most ba
 The following recipes are built in and ready to use out of the box:
 
 - **vanilla**: <%- recipes.find(r => r.name === 'vanilla').description %>
+
+  <%- recipes.find(r => r.name === 'vanilla').tags.map(tag => '<span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">' + tag + '</span>').join(' ') || 'No Dependencies' %>
 <% recipes.filter(r => r.name !== 'vanilla').forEach(function (recipe) { %>
 <%- '- **' + recipe.name + '**: ' + recipe.description %>
+
+  <%- recipe.tags.map(function(tag) { return '<span style="font-size: 12px; background-color: #E0E0E0; padding: 2px 7px; border-radius: 10px; color: #393C52">' + tag + '</span>' }).join(' ') || 'No Dependencies' %>
 <% }); %>
 
 ## Extending `plant`

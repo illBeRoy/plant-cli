@@ -46,3 +46,5 @@ export const addExpress = async (template, entrypoint: string = 'src') => {
 
   logger.success();
 };
+
+export const tags = ['Express'];

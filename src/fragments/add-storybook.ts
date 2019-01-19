@@ -10,3 +10,5 @@ export const addStorybook = async () => {
   await addScript('start', 'tsc -w & npm storybook');
   logger.success();
 };
+
+export const tags = ['Storybook'];

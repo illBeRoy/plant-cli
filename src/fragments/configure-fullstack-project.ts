@@ -44,3 +44,5 @@ export const configureFullstackProject = async () => {
   await addScript('build', 'npm run build:server & npm run build:client');
   logger.success();
 };
+
+export const tags = ['TSLint'];

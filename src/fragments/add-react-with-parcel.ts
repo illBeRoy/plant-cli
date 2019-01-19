@@ -70,3 +70,5 @@ export const addReactWithParcel = async () => {
   await addScript('build', 'parcel build src/index.html --out-dir dist');
   logger.success();
 }
+
+export const tags = ['React', 'Parcel', 'SASS'];

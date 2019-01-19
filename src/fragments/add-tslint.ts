@@ -26,3 +26,5 @@ export const addTSLint = async () => {
   await addScript('posttest', 'npm run lint');
   logger.success();
 };
+
+export const tags = ['TSLint'];

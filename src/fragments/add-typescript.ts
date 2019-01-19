@@ -17,3 +17,5 @@ export const addTypescript = async () => {
   await addScript('watch', 'npm run watch:typescript');
   logger.success();
 };
+
+export const tags = ['Typescript'];

@@ -1,7 +1,15 @@
 import * as ejs from 'ejs';
-import { listRecipes, loadRecipe } from './recipe';
+import * as dependencyTree from 'dependency-tree';
+import { listRecipes, loadRecipe, getRecipeFilename, recipesDirectory } from './recipe';
 import { readFile, writeFile } from './utils/fs';
 import { logger } from './utils/logger';
+
+const getTags = (recipe) =>
+  dependencyTree.toList({ filename: getRecipeFilename(recipe), directory: recipesDirectory() })
+    .filter(m => /src\/fragments\/.*\.js$/.test(m))
+    .map(fragment => require(fragment).tags || [])
+    .reduce((tags, newTags) => [...tags, ...newTags], [])
+    .reduce((tags, nextTag) => tags.includes(nextTag) ? tags : [...tags, nextTag], []);
 
 export const makeReadme = async () => {
   logger.context('README');
@@ -11,7 +19,7 @@ export const makeReadme = async () => {
   logger.pending('gathering recipes information');
   const recipes =
     listRecipes()
-      .map(name => ({ name, description: loadRecipe(name).description() }));
+      .map(name => ({ name, description: loadRecipe(name).description(), tags: getTags(name) }))
 
   logger.pending('exporting README file');
   await writeFile(`${__dirname}/../../README.md`, ejs.render(readmeTemplate, { recipes }));

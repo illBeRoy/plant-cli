@@ -1,6 +1,5 @@
 import { npmInstallDev } from '../actions/npm';
 import { addScript, setPackageJsonValue } from '../actions/packageJson';
-import { jestConfigForNode } from '../actions/jest';
 import { logger } from '../utils/logger';
 
 export const addJest = async (template) => {
@@ -14,3 +13,5 @@ export const addJest = async (template) => {
   await addScript('test', 'jest');
   logger.success();
 };
+
+export const tags = ['Jest'];

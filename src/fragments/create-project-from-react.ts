@@ -2,7 +2,7 @@ import { logger } from '../utils/logger';
 import { createReactApp } from '../actions/create-react-app';
 import { npmInstallDev } from '../actions/npm';
 import { addScript } from '../actions/packageJson';
-import { appendToFile, mkdir, mkdirP, mv, parentDirOf, tmp, writeFile } from '../utils/fs';
+import { appendToFile, mkdirP, mv, parentDirOf, tmp, writeFile } from '../utils/fs';
 import { moduleDeclaration, replaceImport } from '../actions/typescript';
 
 const configOverridesTemplate = (entrypoint: string) =>
@@ -107,3 +107,5 @@ export const createProjectWithReact = async (entrypoint = 'src') => {
 
   logger.success();
 };
+
+export const tags = ['React', 'Create-React-App', 'SASS'];
