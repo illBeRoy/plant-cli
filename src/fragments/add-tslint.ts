@@ -20,6 +20,7 @@ export const addTSLint = async () => {
   await addTSlintRule('trailing-comma', false);
   await addTSlintRule('no-shadowed-variable', false);
   await addTSlintRule('object-literal-sort-keys', false);
+  await addTSlintRule('member-access', false);
   logger.pending('adding scripts');
   await addScript('lint', 'tslint --project tsconfig.json');
   await addScript('posttest', 'npm run lint');

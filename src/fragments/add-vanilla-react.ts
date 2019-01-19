@@ -8,9 +8,5 @@ export const addVanillaReact = async () => {
   await addPeerDependency('react');
   await npmInstallDev('react');
   await npmInstallDev('@types/react');
-  logger.pending('updating .npmignore');
-  await addToNPMIgnore('src');
-  await addToNPMIgnore('tsconfig.json');
-  await addToNPMIgnore('.idea');
   logger.success();
 };

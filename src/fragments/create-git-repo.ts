@@ -9,5 +9,8 @@ export const createGitRepo = async () => {
   await createGitIgnore();
   await appendToGitIgnore('dist');
   await appendToGitIgnore('build');
+  await appendToGitIgnore('.cache');
+  await appendToGitIgnore('.vscode');
+  await appendToGitIgnore('.idea');
   logger.success();
 };

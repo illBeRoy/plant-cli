@@ -19,9 +19,9 @@ function rewireCssModules(config, env) {
 }
 
 function rewireEntryPoint(config, env) {
-  const oldEntryPoint = require.cache[require.resolve(\`react-scripts-ts/config/paths.js\`)].exports.appIndexJs;
+  const oldEntryPoint = require.cache[require.resolve(\`react-scripts/config/paths.js\`)].exports.appIndexJs;
   const newEntryPoint = require.resolve('./${entrypoint}/index.tsx');
-  require.cache[require.resolve(\`react-scripts-ts/config/paths.js\`)].exports.appIndexJs = newEntryPoint;
+  require.cache[require.resolve(\`react-scripts/config/paths.js\`)].exports.appIndexJs = newEntryPoint;
   config.entry = config.entry.map(entry => entry === oldEntryPoint ? newEntryPoint : entry);
   return config;
 }
@@ -58,19 +58,19 @@ export default App;
 `;
 
 export const reactScriptsTest = (entry: string, args = '--env=jsdom', useWatchMode = true) =>
-  `${!useWatchMode ? 'export CI=true && ' : ''}react-app-rewired test --scripts-version react-scripts-ts ${args} ${entry}`;
+  `${!useWatchMode ? 'export CI=true && ' : ''}react-app-rewired test ${args} ${entry}`;
 
 export const addReactScriptsToPackageJson = async (postfix = '', entry = 'src') => {
   postfix = postfix ? `:${postfix}` : postfix;
-  await addScript(`start${postfix}`, `react-app-rewired start --scripts-version react-scripts-ts`);
-  await addScript(`build${postfix}`, `react-app-rewired build --scripts-version react-scripts-ts`);
+  await addScript(`start${postfix}`, `react-app-rewired start`);
+  await addScript(`build${postfix}`, `react-app-rewired build`);
   await addScript(`test${postfix}`, reactScriptsTest(entry));
 };
 
 export const createProjectWithReact = async (entrypoint = 'src') => {
   logger.context('Create React App');
   logger.pending('initializing project (this might take a little while)');
-  await createReactApp('. --use-npm --scripts-version=react-scripts-ts');
+  await createReactApp('. --use-npm --typescript');
   logger.success();
 
   logger.context('SASS');
