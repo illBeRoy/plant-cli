@@ -38,7 +38,7 @@ export const createProjectFromExpo = async () => {
   logger.context('Expo');
   logger.pending('initializing project (this might take a little while)');
   const cwd = process.cwd();
-  await expo('init --template blank --npm .');
+  await expo('init --template blank --npm --workflow managed .');
   process.chdir(cwd);
   logger.pending('tweaking project to use typescript');
   await rm('babel.config.js');
