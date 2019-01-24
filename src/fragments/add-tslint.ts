@@ -21,6 +21,8 @@ export const addTSLint = async () => {
   await addTSlintRule('no-shadowed-variable', false);
   await addTSlintRule('object-literal-sort-keys', false);
   await addTSlintRule('member-access', false);
+  await addTSlintRule('max-classes-per-file', false);
+  await addTSlintRule('interface-name', false)
   logger.pending('adding scripts');
   await addScript('lint', 'tslint --project tsconfig.json');
   await addScript('posttest', 'npm run lint');

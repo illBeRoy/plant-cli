@@ -28,6 +28,11 @@ export const mkdir = (dirname: string): Promise<void> => {
     fs.existsSync(dirname) ? res() : fs.mkdir(dirname, err => err ? rej(err): res()));
 };
 
+export const rm = (filename: string): Promise<void> => {
+  return new Promise((res, rej) =>
+    fs.unlink(filename, err => err ? rej(err) : res()));
+}
+
 export const mkdirP = async (dirname: string): Promise<void> => {
   await shell(`mkdir -p ${dirname}`);
 };

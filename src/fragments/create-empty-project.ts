@@ -3,11 +3,11 @@ import { mkdir, touch } from '../utils/fs';
 import { npmInit } from '../actions/npm';
 import { addScript, setPackageJsonValue } from '../actions/packageJson';
 
-export const createEmptyProject = async () => {
+export const createEmptyProject = async (entryfile = 'src/index.ts') => {
   await mkdir('src');
   await mkdir('test');
   await mkdir('dist');
-  await touch('src/index.ts');
+  await touch(entryfile);
 
   logger.context('NPM');
   logger.pending('init');

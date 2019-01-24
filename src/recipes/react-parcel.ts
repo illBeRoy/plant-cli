@@ -12,7 +12,7 @@ export const description = () =>
 
 export const recipe = async () => {
   await ensureCWDEmpty();
-  await createEmptyProject();
+  await createEmptyProject('index.tsx');
   await createGitRepo();
   await addTypescript();
   await addJest(jestConfigForDOM);
