@@ -35,7 +35,7 @@ The following recipes are built in and ready to use out of the box:
   ###### Express, Typescript, Jest
 
 - **react-component**: React component library that is not a standalone project
-  ###### React, Jest, Storybook, Typescript
+  ###### React, Parcel, Jest, Typescript, TSLint
 
 - **react-express**: Fullstack React & Express application with typescript, jest and sass modules
   ###### React, Create-React-App, SASS, Express, TSLint
