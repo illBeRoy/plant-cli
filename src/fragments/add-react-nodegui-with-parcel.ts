@@ -51,6 +51,7 @@ export const addReactNodeGUIWithParcel = async () => {
   logger.pending('installing nodegui dependencies');
   await npmInstall('@nodegui/nodegui');
   await npmInstall('@nodegui/react-nodegui');
+  await npmInstallDev('nodemon')
   logger.pending('installing parcel dependencies');
   await npmInstallDev('parcel-bundler');
   await npmInstallDev('parcel-plugin-nodegui-stylesheets')
@@ -61,7 +62,7 @@ export const addReactNodeGUIWithParcel = async () => {
   await writeFile('src/index.scss', indexScss);
   await writeFile('src/external-types.d.ts', externalTypesDTs);
   logger.pending('adding start, build scripts');
-  await addScript('start', 'qode dist/index.js');
+  await addScript('start', 'nodemon --watch dist --exec \'qode dist/index.js\' --delay 0.4');
   await addScript('watch', 'parcel watch --target node src/index.tsx --out-dir dist');
   await addScript('build', 'parcel build --target node src/index.tsx --out-dir dist');
   logger.success();
