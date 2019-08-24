@@ -43,6 +43,9 @@ The following recipes are built in and ready to use out of the box:
 - **react-native**: React Native application generated with Expo, with typescript and jest
   ###### React Native, Expo, Typescript, Jest, TSLint
 
+- **react-nodegui**: React-NodeGUI application with typescript, jest and sass, powered by the parcel bundler (experimental)
+  ###### Typescript, Jest, TSLint, React, Parcel, NodeGUI, SASS
+
 - **react-parcel**: React application with typescript, jest and sass modules, powered by the parcel bundler (experimental)
   ###### Typescript, Jest, TSLint, React, Parcel, SASS
 
