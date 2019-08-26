@@ -54,7 +54,7 @@ export const addReactNodeGUIWithParcel = async () => {
   await npmInstallDev('nodemon')
   logger.pending('installing parcel dependencies');
   await npmInstallDev('parcel-bundler');
-  await npmInstallDev('parcel-plugin-nodegui-stylesheets')
+  await npmInstallDev('parcel-plugin-nodegui')
   await npmInstallDev('node-sass');
   logger.pending('creating boilerplate files');
   await mkdir('src');
