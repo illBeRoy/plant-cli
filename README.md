@@ -40,8 +40,8 @@ The following recipes are built in and ready to use out of the box:
 - **react-express**: Fullstack React & Express application with typescript, jest and sass modules
   ###### React, Create-React-App, SASS, Express, TSLint
 
-- **react-native**: React Native application generated with Expo, with typescript and jest
-  ###### React Native, Expo, Typescript, Jest, TSLint
+- **react-native**: React Native application with typescript, sass and jest
+  ###### React Native, SASS, Typescript, TSLint
 
 - **react-nodegui**: React-NodeGUI application with typescript, jest and sass, powered by the parcel bundler (experimental)
   ###### Typescript, Jest, TSLint, React, Parcel, NodeGUI, SASS

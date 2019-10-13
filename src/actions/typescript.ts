@@ -1,7 +1,7 @@
 import { readFile, writeFile } from '../utils/fs';
 import { fromJson, toJson } from '../utils/json';
 
-const defaultTSConfig = {
+export const defaultTSConfig = {
   compilerOptions: {
     target: 'es5',
     module: 'commonjs',

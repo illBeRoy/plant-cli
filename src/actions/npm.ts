@@ -21,3 +21,7 @@ export const addToNPMIgnore = async (filename: string) => {
   await touch('.npmignore');
   await appendToFile('.npmignore', filename);
 };
+
+export const npx = async (command: string) => {
+  await shell(`npx ${command}`);
+}
