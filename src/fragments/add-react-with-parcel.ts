@@ -41,7 +41,12 @@ const externalTypesDTs = `declare module '*.scss';
 `
 
 const postCssRc = `{
-  "modules": true
+  "modules": true,
+  "plugins": {
+    "postcss-modules": {
+      "camelCase": true
+    }
+  }
 }`
 
 export const addReactWithParcel = async () => {
