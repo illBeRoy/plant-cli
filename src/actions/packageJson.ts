@@ -22,6 +22,13 @@ export const addScript = async (scriptName: string, command: string) => {
   await writePackageJson(packageJson);
 };
 
+export const addScripts = async (scripts: { [scriptName: string]: string }) => {
+  const packageJson = await readPackageJson();
+  packageJson.scripts = packageJson.scripts || {};
+  packageJson.scripts = { ...packageJson.scripts, ...scripts };
+  await writePackageJson(packageJson);
+}
+
 export const addPeerDependency = async (dependency: string, version = '*') => {
   const packageJson = await readPackageJson();
   packageJson.peerDependencies = packageJson.peerDependencies || {};

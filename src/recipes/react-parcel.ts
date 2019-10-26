@@ -8,7 +8,7 @@ import { createGitRepo } from '../fragments/create-git-repo';
 import { createEmptyProject } from '../fragments/create-empty-project';
 
 export const description = () =>
-  'React application with typescript, jest and sass modules, powered by the parcel bundler (experimental)';
+  'React application with typescript, jest and sass modules, powered by the parcel bundler';
 
 export const recipe = async () => {
   await ensureCWDEmpty();

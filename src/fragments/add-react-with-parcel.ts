@@ -2,7 +2,7 @@ import { logger } from '../utils/logger';
 import { writeFile, mkdir } from '../utils/fs';
 import { setCompilerOption } from '../actions/typescript';
 import { npmInstall, npmInstallDev } from '../actions/npm';
-import { addScript } from '../actions/packageJson';
+import { addScript, addScripts } from '../actions/packageJson';
 
 const indexHtml = `<!DOCTYPE html>
 <html>
@@ -49,7 +49,12 @@ const postCssRc = `{
   }
 }`
 
-export const addReactWithParcel = async () => {
+const defaultNpmScripts = {
+  start: 'parcel src/index.html',
+  build: 'parcel build src/index.html --out-dir dist'
+}
+
+export const addReactWithParcel = async (scripts: { [scriptName: string]: string } = defaultNpmScripts) => {
   logger.context('React');
   logger.pending('updating typescript options');
   await setCompilerOption('lib', ['dom', 'es2015']);
@@ -71,8 +76,7 @@ export const addReactWithParcel = async () => {
   await writeFile('src/index.scss', indexScss);
   await writeFile('src/external-types.d.ts', externalTypesDTs);
   logger.pending('adding start, build scripts');
-  await addScript('start', 'parcel src/index.html');
-  await addScript('build', 'parcel build src/index.html --out-dir dist');
+  await addScripts(scripts);
   logger.success();
 }
 

@@ -31,6 +31,9 @@ The following recipes are built in and ready to use out of the box:
 - **vanilla**: Basic zero-conf typescript project, which initializes a git repo and uses jest for testing
   ###### Typescript, Jest, TSLint
 
+- **electron**: Electron application with react, typescript, jest and sass modules, powered by the parcel bundler
+  ###### Typescript, Jest, TSLint, React, Parcel, SASS, Electron, Electron-Builder
+
 - **express**: Express-only application which utilizes json as body parser
   ###### Express, Typescript, Jest
 
@@ -46,7 +49,7 @@ The following recipes are built in and ready to use out of the box:
 - **react-nodegui**: React-NodeGUI application with typescript, jest and sass, powered by the parcel bundler (experimental)
   ###### Typescript, Jest, TSLint, React, Parcel, NodeGUI, SASS
 
-- **react-parcel**: React application with typescript, jest and sass modules, powered by the parcel bundler (experimental)
+- **react-parcel**: React application with typescript, jest and sass modules, powered by the parcel bundler
   ###### Typescript, Jest, TSLint, React, Parcel, SASS
 
 - **react**: React application with typescript, jest and sass modules
