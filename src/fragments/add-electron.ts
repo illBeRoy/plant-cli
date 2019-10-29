@@ -16,6 +16,11 @@ function createWindow () {
     }
   });
 
+  if (process.env.NODE_ENV === 'development') {
+    const watch = require('watch');
+    watch.watchTree('${path.dirname(entryFile)}', () => win.reload());
+  }
+
   win.loadFile('${entryFile}');
 }
 
@@ -34,12 +39,12 @@ export const addElectron = async (entryFile: string) => {
   logger.pending('installing dependencies');
   await npmInstallDev('electron');
   await npmInstallDev('electron-builder');
-  await npmInstallDev('nodemon');
+  await npmInstallDev('watch');
   logger.pending('creating config');
   await writeFile('electron.config.js', electronConfig(entryFile));
   await setPackageJsonValue('main', 'electron.config.js');
   await setPackageJsonValue('build', electronBuilderConfig);
-  await addScript('start:electron', `nodemon --watch ${path.dirname(entryFile)} -x 'electron .'`)
+  await addScript('start:electron', `NODE_ENV=development electron .`)
   await addScript('build:electron', 'electron-builder')
   await appendToGitIgnore('bin');
   logger.success();
