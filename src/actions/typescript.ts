@@ -10,6 +10,8 @@ export const defaultTSConfig = {
     outDir: './dist',
     rootDir: './',
     moduleResolution: 'node',
+    allowSyntheticDefaultImports: true,
+    esModuleInterop: true
   },
   include: [
     'src'

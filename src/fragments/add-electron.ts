@@ -47,6 +47,7 @@ export const addElectron = async (entryFile: string) => {
   await addScript('start:electron', `NODE_ENV=development electron .`)
   await addScript('build:electron', 'electron-builder')
   await appendToGitIgnore('bin');
+  await setPackageJsonValue('files', ['electron.config.js', 'dist']);
   logger.success();
 };
 
