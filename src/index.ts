@@ -5,7 +5,8 @@ import { checkForUpdates } from './updates';
 import { PackageManger, setPackageManager } from './actions/npm';
 
 export const main = async (args) => {
-  setPackageManager(args.packageManager);
+  console.log(args);
+  setPackageManager(args.package_manager);
   await checkForUpdates();
   await runRecipe(loadRecipe(args.recipe));
 };
