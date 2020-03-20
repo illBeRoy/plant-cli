@@ -2,8 +2,10 @@
 import { ArgumentParser } from 'argparse';
 import { defaultRecipe, listRecipes, loadRecipe, runRecipe } from './recipe';
 import { checkForUpdates } from './updates';
+import { PackageManger, setPackageManager } from './actions/npm';
 
 export const main = async (args) => {
+  setPackageManager(args.packageManager);
   await checkForUpdates();
   await runRecipe(loadRecipe(args.recipe));
 };
@@ -17,6 +19,12 @@ if (require.main === module) {
     type: 'string',
     nargs: '?'
   });
+
+  argparser.addArgument(['-p', '--package-manager'], {
+    help: 'package manager to use for initialization',
+    choices: Object.keys(PackageManger).map(k => PackageManger[k]),
+    defaultValue: PackageManger.NPM
+  })
 
   main(argparser.parseArgs());
 }
