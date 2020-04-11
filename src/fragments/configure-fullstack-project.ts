@@ -5,6 +5,7 @@ import { logger } from '../utils/logger';
 import { addReactScriptsToPackageJson, reactScriptsTest } from './create-project-from-react';
 import { addTSlintRule } from '../actions/tslint';
 import { mkdir, writeFile } from '../utils/fs';
+import { npmRun } from '../actions/npm';
 
 export const e2eTestTemplate =
   `describe('End to End Tests', () => {
@@ -39,9 +40,9 @@ export const configureFullstackProject = async () => {
   await addExpressScriptsToPackageJson('server', 'src/server');
   await addScript('test:server', reactScriptsTest('src/server', '--env=node'));
   await addScript('test:e2e', reactScriptsTest('test', '--testMatch **/test/**/*.e2e.ts', false));
-  await addScript('test', 'export CI=true && npm run test:client && npm run test:server');
-  await addScript('start', 'npm run start:client & npm run start:server');
-  await addScript('build', 'npm run build:server & npm run build:client');
+  await addScript('test', `export CI=true && ${npmRun('test:client')} && ${npmRun('test:server')}`);
+  await addScript('start', `${npmRun('start:client')} & ${npmRun('start:server')}`);
+  await addScript('build', `${npmRun('build:server')} & ${npmRun('build:client')}`);
   logger.success();
 };
 

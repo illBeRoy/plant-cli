@@ -32,13 +32,13 @@ The following recipes are built in and ready to use out of the box:
   ###### Typescript, Jest, TSLint
 
 - **electron**: Electron application with react, typescript, jest and sass modules, powered by the parcel bundler
-  ###### Typescript, Jest, TSLint, React, Parcel, SASS, Electron, Electron-Builder
+  ###### Typescript, Jest, ESLint, React, Parcel, SASS, Electron, Electron-Builder
 
 - **express**: Express-only application which utilizes json as body parser
   ###### Express, Typescript, Jest
 
 - **react-component**: React component library that is not a standalone project
-  ###### React, Parcel, Jest, Typescript, TSLint
+  ###### React, Parcel, Jest, Typescript, ESLint
 
 - **react-express**: Fullstack React & Express application with typescript, jest and sass modules
   ###### React, Create-React-App, SASS, Express, TSLint
@@ -47,10 +47,10 @@ The following recipes are built in and ready to use out of the box:
   ###### React Native, SASS, Typescript, TSLint
 
 - **react-nodegui**: React-NodeGUI application with typescript, jest and sass, powered by the parcel bundler (experimental)
-  ###### Typescript, Jest, TSLint, React, Parcel, NodeGUI, SASS
+  ###### Typescript, Jest, React, Parcel, NodeGUI, SASS, ESLint
 
 - **react-parcel**: React application with typescript, jest and sass modules, powered by the parcel bundler
-  ###### Typescript, Jest, TSLint, React, Parcel, SASS
+  ###### Typescript, Jest, React, Parcel, SASS, ESLint
 
 - **react**: React application with typescript, jest and sass modules
   ###### React, Create-React-App, SASS

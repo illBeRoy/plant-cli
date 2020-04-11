@@ -1,4 +1,4 @@
-import { npmInstallDev } from '../actions/npm';
+import { npmInstallDev, npmRun } from '../actions/npm';
 import { addScript } from '../actions/packageJson';
 import { createTSConfig } from '../actions/typescript';
 import { logger } from '../utils/logger';
@@ -12,9 +12,9 @@ export const addTypescript = async () => {
   await createTSConfig();
   logger.pending('adding scripts');
   await addScript('build:typescript', 'tsc');
-  await addScript('build', 'npm run build:typescript');
+  await addScript('build', npmRun('build:typescript'));
   await addScript('watch:typescript', 'tsc -w');
-  await addScript('watch', 'npm run watch:typescript');
+  await addScript('watch', npmRun('watch:typescript'));
   logger.success();
 };
 

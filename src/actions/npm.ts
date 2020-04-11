@@ -24,6 +24,19 @@ export const npmInstallDev = async (packageName: string) => {
   await shell(`${pm} ${cmd} -D '${packageName}'`)
 };
 
+export const npmRun = (task: string): string => {
+  switch (pm) {
+    case PackageManger.NPM:
+      return `npm run ${task}`
+    
+    case PackageManger.YARN:
+      return `yarn ${task}`
+
+    default:
+      throw new Error(`unknown package manager: ${pm}`)
+  }
+}
+
 export const npmShowVersion = async (packageName: string): Promise<string> => {
   return await shell(`npm show '${packageName}' version`);
 };

@@ -1,4 +1,4 @@
-import { npmInstallDev, npx } from '../actions/npm';
+import { npmInstallDev, npx, npmRun } from '../actions/npm';
 import { addScript } from '../actions/packageJson';
 import { addTSlintRule, initTSLint, setTSLintExtends, setTSLintRulesDirectory } from '../actions/tslint';
 import { logger } from '../utils/logger';
@@ -27,7 +27,7 @@ export const addTSLint = async () => {
   await addTSlintRule('member-ordering', false)
   logger.pending('adding scripts');
   await addScript('lint', 'tslint --project tsconfig.json');
-  await addScript('posttest', 'npm run lint');
+  await addScript('posttest', npmRun('lint'));
   logger.pending('applying lint to project');
   await npx('tslint --fix --project tsconfig.json');
   logger.success();

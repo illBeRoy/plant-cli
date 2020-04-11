@@ -39,6 +39,8 @@ export const addElectron = async (entryFile: string) => {
   logger.pending('installing dependencies');
   await npmInstallDev('electron');
   await npmInstallDev('electron-builder');
+  await npmInstallDev('@types/electron');
+  await npmInstallDev('@types/node');
   await npmInstallDev('watch');
   logger.pending('creating config');
   await writeFile('electron.config.js', electronConfig(entryFile));

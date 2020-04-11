@@ -5,7 +5,7 @@ import { addReactComponentBoilerplate } from '../fragments/add-react-component-b
 import { addJest } from '../fragments/add-jest';
 import { createGitRepo } from '../fragments/create-git-repo';
 import { addTypescript } from '../fragments/add-typescript';
-import { addTSLint } from '../fragments/add-tslint';
+import { addESLint } from '../fragments/add-eslint';
 
 export const description = () =>
   'React component library that is not a standalone project';
@@ -14,7 +14,7 @@ export const recipe = async () => {
   await ensureCWDEmpty();
   await createEmptyProject('src/index.tsx');
   await addTypescript();
-  await addTSLint();
+  await addESLint();
   await addReactComponentBoilerplate();
   await addJest(jestConfigForDOM);
   await createGitRepo();
